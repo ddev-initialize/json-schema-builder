@@ -69,7 +69,12 @@
 						value={option}
 						oninput={(e) => updateOption(i, (e.target as HTMLInputElement).value)}
 					/>
-					<button type="button" onclick={() => removeOption(i)} aria-label="Remove option" class="icon-btn">
+					<button
+						type="button"
+						onclick={() => removeOption(i)}
+						aria-label="Remove option"
+						class="icon-btn"
+					>
 						<X size={14} />
 					</button>
 				</div>
@@ -146,6 +151,7 @@
 		background: transparent;
 		border-radius: var(--jsb-radius, 0.25em);
 		color: var(--jsb-text-muted, light-dark(oklch(0.45 0 0), oklch(0.65 0 0)));
+		cursor: pointer;
 
 		&:hover {
 			background: var(--jsb-bg, canvas);

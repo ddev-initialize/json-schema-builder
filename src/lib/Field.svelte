@@ -52,12 +52,26 @@
 		</label>
 
 		<div class="actions">
-			<button type="button" onclick={onmoveup} disabled={!canMoveUp} aria-label="Move field up" class="icon-btn">
-				<ChevronUp size={16} />
-			</button>
-			<button type="button" onclick={onmovedown} disabled={!canMoveDown} aria-label="Move field down" class="icon-btn">
-				<ChevronDown size={16} />
-			</button>
+			<div class="movers">
+				<button
+					type="button"
+					onclick={onmoveup}
+					disabled={!canMoveUp}
+					aria-label="Move field up"
+					class="icon-btn"
+				>
+					<ChevronUp size={16} />
+				</button>
+				<button
+					type="button"
+					onclick={onmovedown}
+					disabled={!canMoveDown}
+					aria-label="Move field down"
+					class="icon-btn"
+				>
+					<ChevronDown size={16} />
+				</button>
+			</div>
 			<button type="button" onclick={ondelete} aria-label="Delete field" class="icon-btn delete">
 				<Trash2 size={16} />
 			</button>
@@ -128,6 +142,18 @@
 		gap: 0.25rem;
 	}
 
+	.movers {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 2px;
+
+		.icon-btn {
+			padding: 2px;
+		}
+	}
+
 	.icon-btn {
 		display: grid;
 		place-items: center;
@@ -136,6 +162,7 @@
 		background: transparent;
 		border-radius: var(--jsb-radius, 0.25em);
 		color: var(--jsb-text-muted, light-dark(oklch(0.45 0 0), oklch(0.65 0 0)));
+		cursor: pointer;
 
 		&:hover:not(:disabled) {
 			background: var(--jsb-bg-muted, light-dark(oklch(0.97 0 0), oklch(0.25 0 0)));

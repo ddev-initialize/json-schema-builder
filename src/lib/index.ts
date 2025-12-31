@@ -1,3 +1,3 @@
 export { default as SchemaBuilder } from './SchemaBuilder.svelte';
 export type { Field, FieldType, JSONSchema } from './types.js';
-export { fieldsToSchema, schemaToFields, createField } from './schema.js';
+export { fieldsToSchema, schemaToFields, createField, labelToKey } from './schema.js';
