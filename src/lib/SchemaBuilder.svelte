@@ -27,10 +27,6 @@
 </script>
 
 <div class="jsb {className}">
-	<header class="header">
-		<h2>Design your data blueprint</h2>
-	</header>
-
 	<FieldList bind:fields />
 	<AddFieldMenu onadd={addField} />
 
@@ -40,18 +36,7 @@
 <style>
 	.jsb {
 		font-family: var(--jsb-font, inherit);
-		color: var(--jsb-text, canvastext);
-		background: var(--jsb-bg, canvas);
-	}
-
-	.header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		margin-block-end: var(--jsb-gap, 1rem);
-
-		& h2 {
-			margin: 0;
-		}
+		color: var(--jsb-text, var(--color-text));
+		background: var(--jsb-bg, var(--color-bg));
 	}
 </style>

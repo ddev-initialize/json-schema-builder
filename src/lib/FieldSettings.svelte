@@ -25,23 +25,28 @@
 <div class="settings">
 	<label class="setting">
 		<span>Key</span>
-		<input type="text" bind:value={field.key} />
+		<input type="text" name="{field.id}-key" bind:value={field.key} />
 	</label>
 
 	<label class="setting">
 		<span>Description</span>
-		<input type="text" bind:value={field.description} placeholder="Optional help text" />
+		<input name="{field.id}-description" type="text" bind:value={field.description} placeholder="Optional help text" />
+	</label>
+
+	<label class="setting-checkbox">
+		<input name="{field.id}-required" type="checkbox" bind:checked={field.required} />
+		<span>Required field</span>
 	</label>
 
 	{#if field.type === 'text' || field.type === 'longtext'}
 		<div class="setting-row">
 			<label class="setting">
 				<span>Min length</span>
-				<input type="number" bind:value={field.minLength} min="0" />
+				<input type="number" name="{field.id}-minimum-length" bind:value={field.minLength} min="0" />
 			</label>
 			<label class="setting">
 				<span>Max length</span>
-				<input type="number" bind:value={field.maxLength} min="0" />
+				<input type="number" name="{field.id}-maximum-length" bind:value={field.maxLength} min="0" />
 			</label>
 		</div>
 	{/if}
@@ -50,11 +55,11 @@
 		<div class="setting-row">
 			<label class="setting">
 				<span>Minimum</span>
-				<input type="number" bind:value={field.min} />
+				<input type="number" name="{field.id}-minimum" bind:value={field.min} />
 			</label>
 			<label class="setting">
 				<span>Maximum</span>
-				<input type="number" bind:value={field.max} />
+				<input type="number" name="{field.id}-maximum" bind:value={field.max} />
 			</label>
 		</div>
 	{/if}
@@ -66,6 +71,7 @@
 				<div class="option">
 					<input
 						type="text"
+						name="{field.id}-option-{i}"
 						value={option}
 						oninput={(e) => updateOption(i, (e.target as HTMLInputElement).value)}
 					/>
@@ -90,9 +96,9 @@
 <style>
 	.settings {
 		display: grid;
-		gap: 0.5rem;
-		padding: 0.5rem;
-		background: var(--jsb-bg-muted, light-dark(oklch(0.97 0 0), oklch(0.25 0 0)));
+		gap: 0.75rem;
+		padding: 1rem;
+		background: var(--jsb-bg-muted, var(--color-bg-muted));
 	}
 
 	.setting {
@@ -101,31 +107,51 @@
 
 		& span {
 			font-size: 0.75em;
-			color: var(--jsb-text-muted, light-dark(oklch(0.45 0 0), oklch(0.65 0 0)));
+			font-weight: 500;
+			color: var(--jsb-text-muted, var(--color-text-muted));
 		}
 
 		& input {
 			padding: 0.5em;
-			border: 1px solid var(--jsb-border, light-dark(oklch(0.9 0 0), oklch(0.3 0 0)));
+			border: 1px solid var(--jsb-border, var(--color-border));
 			border-radius: var(--jsb-radius, 0.25em);
+			font: inherit;
+		}
+	}
+
+	.setting-checkbox {
+		display: flex;
+		align-items: center;
+		gap: 0.5em;
+		padding: 0.5em;
+		border-radius: var(--jsb-radius, 0.25em);
+		background: var(--jsb-bg, var(--color-bg));
+
+		& input {
+			cursor: pointer;
+		}
+
+		& span {
+			font-size: 0.875em;
 		}
 	}
 
 	.setting-row {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 0.5rem;
+		gap: 0.75rem;
 	}
 
 	.options {
-		border: 1px solid var(--jsb-border, light-dark(oklch(0.9 0 0), oklch(0.3 0 0)));
+		border: 1px solid var(--jsb-border, var(--color-border));
 		border-radius: var(--jsb-radius, 0.25em);
-		padding: 0.5rem;
+		padding: 0.75rem;
 		margin: 0;
+		background: var(--jsb-bg, var(--color-bg));
 
 		& legend {
 			font-size: 0.75em;
-			color: var(--jsb-text-muted, light-dark(oklch(0.45 0 0), oklch(0.65 0 0)));
+			font-weight: 500;
+			color: var(--jsb-text-muted, var(--color-text-muted));
 			padding-inline: 0.25em;
 		}
 	}
@@ -138,8 +164,9 @@
 		& input {
 			flex: 1;
 			padding: 0.5em;
-			border: 1px solid var(--jsb-border, light-dark(oklch(0.9 0 0), oklch(0.3 0 0)));
+			border: 1px solid var(--jsb-border, var(--color-border));
 			border-radius: var(--jsb-radius, 0.25em);
+			font: inherit;
 		}
 	}
 
@@ -150,12 +177,11 @@
 		border: none;
 		background: transparent;
 		border-radius: var(--jsb-radius, 0.25em);
-		color: var(--jsb-text-muted, light-dark(oklch(0.45 0 0), oklch(0.65 0 0)));
-		cursor: pointer;
+		color: var(--jsb-text-muted, var(--color-text-muted));
 
 		&:hover {
-			background: var(--jsb-bg, canvas);
-			color: var(--jsb-text, canvastext);
+			background: var(--jsb-bg-muted, var(--color-bg-muted));
+			color: var(--jsb-text, var(--color-text));
 		}
 	}
 
@@ -166,7 +192,7 @@
 		padding: 0.5em;
 		border: none;
 		background: transparent;
-		color: var(--jsb-primary, light-dark(oklch(0.55 0.2 250), oklch(0.7 0.15 250)));
+		color: var(--jsb-primary, var(--color-primary));
 
 		&:hover {
 			text-decoration: underline;

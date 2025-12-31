@@ -6,7 +6,7 @@
 	const formatted = $derived(JSON.stringify(schema, null, 2));
 </script>
 
-<details class="preview" open>
+<details class="preview">
 	<summary>JSON Schema Output</summary>
 	<pre><code>{formatted}</code></pre>
 </details>
@@ -14,13 +14,13 @@
 <style>
 	.preview {
 		margin-block-start: var(--jsb-gap, 1rem);
-		border: 1px solid var(--jsb-border, light-dark(oklch(0.9 0 0), oklch(0.3 0 0)));
+		border: 1px solid var(--jsb-border, var(--color-border));
 		border-radius: var(--jsb-radius, 0.25em);
 		overflow: hidden;
 
 		& summary {
 			padding: 0.75rem;
-			background: var(--jsb-bg-muted, light-dark(oklch(0.97 0 0), oklch(0.25 0 0)));
+			background: var(--jsb-bg-muted, var(--color-bg-muted));
 			font-weight: 500;
 		}
 

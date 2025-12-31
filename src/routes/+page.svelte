@@ -5,9 +5,7 @@
 </script>
 
 <main>
-	<h1>JSON Schema Builder</h1>
-	<p>A visual tool for building data extraction blueprints.</p>
-
+	<h1>Data Blueprint Builder</h1>
 	<SchemaBuilder bind:schema />
 </main>
 
@@ -20,10 +18,5 @@
 
 	h1 {
 		margin: 0 0 0.5rem;
-	}
-
-	p {
-		color: #6b7280;
-		margin: 0 0 2rem;
 	}
 </style>
