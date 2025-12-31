@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { GripVertical, Settings, X } from '@lucide/svelte';
+	import { GripVertical, Settings, Trash } from '@lucide/svelte';
 	import type { Field } from './types.js';
 	import { FIELD_TYPES } from './types.js';
 	import { labelToKey } from './schema.js';
@@ -60,7 +60,7 @@
 		</button>
 
 		<button type="button" onclick={ondelete} class="delete-btn" aria-label="Delete field">
-			<X size={16} />
+			<Trash size={16} />
 		</button>
 	</div>
 
@@ -148,9 +148,6 @@
 	}
 
 	.delete-btn {
-		opacity: 0;
-		transition: opacity 0.2s;
-
 		&:hover {
 			color: var(--jsb-danger, var(--color-danger));
 		}
